@@ -1,16 +1,12 @@
-import { CronJob } from 'cron'
+import { CronService } from './service/cron-service'
 
 export class Server {
   public static start() {
     console.log('Server started...')
-    const job = new CronJob(
-      '*/2 * * * * *', // cronTime
-      function () {
-        const today = new Date()
-        console.log(`2 second'`, today)
-      }, // onTick
-     
-    )
-    job.start()
+
+    const job = CronService.createJob('*/5 * * * * *', () => {
+        const date = new Date()
+        console.log('🚀 5 seconds', date)
+    })
   }
 }
