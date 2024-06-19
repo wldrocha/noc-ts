@@ -1,4 +1,4 @@
-const enum LogSeverityLevel {
+export const enum LogSeverityLevel {
   low = 'low',
   medium = 'medium',
   high = 'high'
