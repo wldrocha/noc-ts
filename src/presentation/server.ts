@@ -10,8 +10,8 @@ export class Server {
     console.log('Server started...')
 
     const job = CronService.createJob('*/5 * * * * *', () => {
-      // const url = 'https://google.com'
-      const url = 'https://localhost:3000'
+      const url = 'https://google.com'
+      // const url = 'https://localhost:3000'
       const date = new Date()
       new CheckService(
         fileSystemLogRepository,
