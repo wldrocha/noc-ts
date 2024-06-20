@@ -15,6 +15,8 @@ export class Server {
       const date = new Date()
       new CheckService(
         fileSystemLogRepository,
+        // undefined,
+        // undefined
         () => console.log(`✅ ${url} - CheckService is ok`),
         (error) => console.log(`❌ ${date} - ${error}`)
       ).execute(url)
