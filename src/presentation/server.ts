@@ -8,19 +8,21 @@ import { EmailService } from './service/email.service'
 const fileSystemLogRepository = new LogRepositoryImpl(new FileSystemDataSource())
 
 export class Server {
-  public static start() {
+  public static async start() {
     console.log('Server started...')
 
     const emailService = new EmailService()
-    emailService.sendEmail({
-      to: 'wrocha@grupov.com.ve',
-      subject: 'Test email',
-      htmlBody: `
-      <h1>Test email</h1>
-      <p>Lorem impusm kdlfaklsdfkldklasfkladklsfklds</p>
-      `
-    })
-    
+    // emailService.sendEmail({
+    //   to: 'wrocha@grupov.com.ve',
+    //   subject: 'Test email',
+    //   htmlBody: `
+    //   <h1>Test email</h1>
+    //   <p>Lorem impusm kdlfaklsdfkldklasfkladklsfklds</p>
+    //   `
+    // })
+
+    // const isSendEmail = await emailService.sendEmailWithFileSystemLog(['wld.rocha@gmail.com', 'wrocha@grupov.com.ve'])
+    // console.log('🚀 ~ Server ~ start ~ isSendEmail:', isSendEmail)
 
     // const job = CronService.createJob('*/5 * * * * *', () => {
     //   const url = 'https://google.com'
