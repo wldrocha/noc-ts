@@ -3,13 +3,24 @@ import { CheckService } from '../domain/use-cases/checks/check-service'
 import { FileSystemDataSource } from '../infrastructure/datasources/file-system.datasource'
 import { LogRepositoryImpl } from '../infrastructure/repositories/log.respostory.impl'
 import { CronService } from './service/cron-service'
+import { EmailService } from './service/email.service'
 
 const fileSystemLogRepository = new LogRepositoryImpl(new FileSystemDataSource())
 
 export class Server {
   public static start() {
     console.log('Server started...')
-    console.log('🚀 ~ Server ~ start ~ envs:', envs.MAILER_EMAIL, envs.MAILER_SECRET_KEY)
+
+    const emailService = new EmailService()
+    emailService.sendEmail({
+      to: 'wrocha@grupov.com.ve',
+      subject: 'Test email',
+      htmlBody: `
+      <h1>Test email</h1>
+      <p>Lorem impusm kdlfaklsdfkldklasfkladklsfklds</p>
+      `
+    })
+    
 
     // const job = CronService.createJob('*/5 * * * * *', () => {
     //   const url = 'https://google.com'
