@@ -32,4 +32,14 @@ export class LogEntity {
     log.createdAt = new Date(createdAt)
     return log
   }
+
+  static fromObject = (object: { [key: string]: any }): LogEntity => {
+    const { level, message, createdAt, origin = 'log.entity.ts' } = object
+    if (!level) throw new Error('Level is required')
+    if (!message) throw new Error('Message is required')
+    if (!createdAt) throw new Error('Created at is required')
+    const log = new LogEntity({ level, message, createdAt, origin })
+    log.createdAt = new Date(createdAt)
+    return log
+  }
 }
