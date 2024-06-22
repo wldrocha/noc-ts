@@ -14,14 +14,14 @@ async function main() {
 
   const prisma = new PrismaClient()
 
-  const newLog = await prisma.logModel.create({
-    data: {
-      level: 'HEIGH',
-      message: 'test 2 save with prisma on psotgres',
-      origin: 'app.ts'
-    }
-  })
-  console.log('🚀 ~ main ~ newLog:', newLog)
+  // const newLog = await prisma.logModel.create({
+  //   data: {
+  //     level: 'MEDIUM',
+  //     message: 'test 2 save with prisma on psotgres',
+  //     origin: 'app.ts'
+  //   }
+  // })
+  // console.log('🚀 ~ main ~ newLog:', newLog)
 
   Server.start()
 }
