@@ -2,4 +2,6 @@
 
 /logs
 /mongo
+/dist
+/postgres
 .env
