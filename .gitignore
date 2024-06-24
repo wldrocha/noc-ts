@@ -1,7 +1,8 @@
 /node_modules
 
 /logs
-/mongo
+/mongo*
+/postgres*
 /dist
-/postgres
-.env
+.env*
+/coverage
