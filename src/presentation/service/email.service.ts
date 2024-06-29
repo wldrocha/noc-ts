@@ -51,7 +51,7 @@ export class EmailService {
     const attachments: Attachment[] = [
       { filename: 'logs-all.log', path: path.resolve('./logs/logs-all.log') },
       { filename: 'logs-medium.log', path: path.resolve('./logs/logs-medium.log') },
-      { filename: 'logs-hight.log', path: path.resolve('./logs/logs-hight.log') }
+      { filename: 'logs-high.log', path: path.resolve('./logs/logs-high.log') }
     ]
 
     return this.sendEmail({ to, subject, htmlBody, attachments })

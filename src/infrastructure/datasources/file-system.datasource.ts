@@ -6,14 +6,14 @@ export class FileSystemDataSource implements LogDataSource {
   private readonly logPath = 'logs/'
   private readonly allLogsPath = 'logs/logs-all.log'
   private readonly mediumLogsPath = 'logs/logs-medium.log'
-  private readonly hightLogsPath = 'logs/logs-hight.log'
+  private readonly highLogsPath = 'logs/logs-high.log'
 
   constructor() {
     this.createLogsFiles()
   }
 
   private createLogsFiles = () => {
-    const allPaths = [this.allLogsPath, this.mediumLogsPath, this.hightLogsPath]
+    const allPaths = [this.allLogsPath, this.mediumLogsPath, this.highLogsPath]
     if (!fs.existsSync(this.logPath)) {
       fs.mkdirSync(this.logPath)
     }
@@ -34,7 +34,7 @@ export class FileSystemDataSource implements LogDataSource {
     if (newLog.level === LogSeverityLevel.medium) {
       fs.appendFileSync(this.mediumLogsPath, logToJson)
     } else {
-      fs.appendFileSync(this.hightLogsPath, logToJson)
+      fs.appendFileSync(this.highLogsPath, logToJson)
     }
   }
 
@@ -51,7 +51,7 @@ export class FileSystemDataSource implements LogDataSource {
       case LogSeverityLevel.medium:
         return this.getLogsFromFile(this.mediumLogsPath)
       case LogSeverityLevel.high:
-        return this.getLogsFromFile(this.hightLogsPath)
+        return this.getLogsFromFile(this.highLogsPath)
       default:
         throw new Error(`${severityLevel} not implemented.`)
     }
@@ -61,7 +61,7 @@ export class FileSystemDataSource implements LogDataSource {
   //     const levels = {
   //       [LogSeverityLevel.low]: this.allLogsPath,
   //       [LogSeverityLevel.medium]: this.mediumLogsPath,
-  //       [LogSeverityLevel.high]: this.hightLogsPath
+  //       [LogSeverityLevel.high]: this.highLogsPath
   //     }
 
   //     return levels[level] ?? this.allLogsPath
