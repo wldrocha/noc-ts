@@ -81,7 +81,6 @@ describe('FileSystemDataSource', () => {
     await fileSystemDataSource.saveLog(logMedium)
     await fileSystemDataSource.saveLog(logHigh)
 
-    
     // console.log("🚀 ~ test ~ savedLogLow:", savedLogLow)
     const savedLogLow = await fileSystemDataSource.getLogs(LogSeverityLevel.low)
     const savedLogMedium = await fileSystemDataSource.getLogs(LogSeverityLevel.medium)
@@ -90,5 +89,31 @@ describe('FileSystemDataSource', () => {
     expect(savedLogLow).toEqual(expect.arrayContaining([logLow, logMedium, logHigh]))
     expect(savedLogMedium).toEqual(expect.arrayContaining([logMedium]))
     expect(savedLogHigh).toEqual(expect.arrayContaining([logHigh]))
+  })
+
+  test('should not throw an error if logs do not exist', async () => {
+    new FileSystemDataSource()
+    new FileSystemDataSource()
+
+    expect(true).toBeTruthy()
+  })
+
+  test('should return an empty array if logs do not exist', async () => {
+    const fileSystemDataSource = new FileSystemDataSource()
+    const logs = await fileSystemDataSource.getLogs(LogSeverityLevel.low)
+
+    expect(logs).toEqual([])
+  })
+
+  test('should return throw if severity level is invalid', async () => {
+    const logDataSource = new FileSystemDataSource()
+    const customSeverityLevel = 'CUSTOMLEVEL' as LogSeverityLevel
+    try {
+      await logDataSource.getLogs(customSeverityLevel)
+      expect(true).toBeFalsy()
+    } catch (error) {
+      const errorString = `${error}`
+      expect(errorString).toContain(`Error: ${customSeverityLevel} not implemented`)
+    }
   })
 })
